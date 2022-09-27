@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "dev": "nodemon server/server.js"
   },
   "author": "Krisette Odegard",
   "license": "ISC",
@@ -16,8 +17,10 @@
     "babel-loader": "^8.2.5",
     "concurrently": "^7.4.0",
     "css-loader": "^6.7.1",
+    "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "html-webpack-plugin": "^5.5.0",
+    "mongoose": "^6.6.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sass": "^1.55.0",

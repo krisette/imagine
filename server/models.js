@@ -7,17 +7,18 @@ const tripSchema = new Schema({
   start_date: { type: Date, required: true },
   end_date: { type: Date, required: true },
   hotel: { type: String, required: true },
-  parks: [{ 
-    name: String,
-    id: {
-      type: Schema.Types.ObjectId,
-      ref: 'park'
-    }
-  }],
-  user_id: {
-    type: Schema.Types.ObjectId,
-    ref: 'user'
-  }
+  parks: { type: String, required: true }
+  // parks: [{ 
+  //   name: String,
+  //   id: {
+  //     type: Schema.Types.ObjectId,
+  //     ref: 'park'
+  //   }
+  // }],
+  // user_id: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: 'user'
+  // }
 });
 
 const Trip = mongoose.model('trip', tripSchema);
