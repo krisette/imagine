@@ -1,8 +1,8 @@
-// require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const tripRouter = require(path.join(__dirname, '/routes/trips.js'));
 const mongoose = require('mongoose');
+require('dotenv').config({ path: path.resolve(__dirname, './.env') })
 
 // start express app!
 const app = express();
@@ -19,9 +19,9 @@ app.get('/', (req, res) => {
 app.use('/trips', tripRouter);
 
 // connect to db and start server
-mongoose.connect("mongodb+srv://krisette:EzsNVuFIWAN2r60X@krisette.kg5jhex.mongodb.net/?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    app.listen(3000, () => {
+    app.listen(process.env.PORT, () => {
       console.log('db connected & server listening on port 3000');
     });
   })
