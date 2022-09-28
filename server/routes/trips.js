@@ -2,22 +2,32 @@ const express = require('express');
 const router = express.Router();
 const tripController = require('../middleware/tripController');
 
+
+
+
+router.get('/parks',
+tripController.getParks,
+(req, res) => {
+  return res.status(200).json(res.locals.parks);
+}
+);
+
+router.get('/upcoming/:id',
+tripController.getUpcomingTrip,
+(req, res) => {
+  res.status(200).json(res.locals.trip)
+});
+
+router.get('/:id',
+tripController.getTrips,
+(req, res) => {
+  res.status(200).send(res.locals.trips)
+});
+
 router.get('/',
   tripController.getTrips,
    (req, res) => {
   res.status(200).json(res.locals.trips)
-});
-
-router.get('/:id',
-  tripController.getOneTrip,
-  (req, res) => {
-  res.status(200).send('u got a trip lol')
-});
-
-router.get('/upcoming',
-  tripController.getUpcomingTrip,
-  (req, res) => {
-  res.status(200).json(res.locals.trip)
 });
 
 router.post('/',

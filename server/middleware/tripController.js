@@ -4,8 +4,8 @@ const tripController = {
 // create
   createTrip: (req, res, next) => {
     console.log(req.body);
-    const { start_date, end_date, hotel, parks } = req.body;
-    models.Trip.create({ start_date: start_date, end_date: end_date, hotel: hotel, parks: parks })
+    const { start_date, end_date, hotel, parks, user_id } = req.body;
+    models.Trip.create({ start_date: start_date, end_date: end_date, hotel: hotel, parks: parks, user_id: user_id })
       .then(data => next())
       .catch(err => {
         return next({
@@ -17,7 +17,7 @@ const tripController = {
 
 // read
   getTrips: (req, res, next) => {
-    models.Trip.find()
+    models.Trip.find( { user_id: req.session.user.id } ) 
       .then(data => {
         res.locals.trips = data;
         return next();
@@ -58,6 +58,21 @@ const tripController = {
         return next({
           log: `tripController.getUpcomingTrip: ERROR: ${err}`,
           message: { err: 'Could not find character' },
+        });
+      });
+  },
+
+// get list of parks from db for checkboxes in new trip form
+  getParks: (req, res, next) => {
+    models.Park.find()
+      .then(data => {
+        res.locals.parks = data;
+        return next();
+      })
+      .catch(err => {
+        return next({
+          log: `tripController.getParks: ERROR: ${err}`,
+          message: { err: 'Could not find parks' },
         });
       });
   },
