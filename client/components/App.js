@@ -1,45 +1,41 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
-import NewTrip from './NewTrip';
-import UpdateTrip from './UpdateTrip';
-import DeleteTrip from './DeleteTrip';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+// import './App.css';
+import Home from './Home.js';
+import Login from './Login.js';
 
 const App = () => {
-  const [trips, setTrips] = useState(null);
+  const [loginStatus, setLoginStatus] = useState(false);
+  // const [userSession, setUserSession] = useState(true);
+  const [user, setUser] = useState();
+  const [userID, setUserID] = useState();
+  
+  // useEffect(() => {
+  //   const checkUserAuth = () => {
+  //     fetch('/users/isAuth')
+  //       .then(res => res.json())
+  //       .then(data => {
+  //         if (data.status === 200) {
+  //           console.log('hi');
+  //         } else {
+  //           setLoginStatus(undefined);
+  //         }
+  //       })
+  //       .catch(err => console.log(err));
+  //   }
+  //   checkUserAuth();
+  // }, []);
 
-  useEffect(() => {
-    const getTrips = () => {
-      fetch('/trips')
-        .then(res => res.json())
-        .then(data => {
-          setTrips(data);
-        })
-        .catch(err => console.log(err));
-    }
-    getTrips();
-  }, []);
+  if (!loginStatus) {
+    return <Login setLoginStatus={setLoginStatus} setUser={setUser} setUserID={setUserID} />
+  }
 
   return (
-    <div className="main">
-      <h1>iMaGiNaShUN</h1>
-      <div className="Trips">
-        <h2>All Trips</h2>
-          {trips && trips.map(trip => {
-            return (
-              <div className="trip">
-                <p>{trip.start_date}</p>
-                <p>{trip.end_date}</p>
-                <p>{trip.hotel}</p>
-                <p>{trip.parks}</p>
-              </div>
-            )
-          })}
-        </div>
-        <NewTrip />
-        <UpdateTrip />
-        <DeleteTrip />
+      <div className="main-container">
+         <h1>iMaGiNaShUN</h1>
+      <Home user={user} userID={userID} />
       </div>
-  )
+    )
 }
 
 export default App;
