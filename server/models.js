@@ -10,7 +10,7 @@ const tripSchema = new Schema({
   // parks: { type: String, required: true },
   parks: [{
     name: { type: String, required: true },
-    date: { type: Date, required: true },
+    date: { type: Date },
     reservations: { type: Boolean, default: false },
     tickets: { type: Boolean, default: false }
   }],

@@ -34,11 +34,9 @@ app.use(session({
   saveUninitialized: false,
 })
 )
+// serve static files
+app.use('/images', express.static(path.resolve(__dirname, '../client/images')));
 
-// root route handler
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/index.html'));
-});
 
 // declare route handlers
 const tripRouter = require(path.join(__dirname, '/routes/trips.js'));
@@ -48,10 +46,14 @@ const userRouter = require(path.join(__dirname, '/routes/users.js'));
 app.use('/trips', tripRouter);
 app.use('/users', userRouter);
 
+// root route handler
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/index.html'));
+});
 
 // connect to db and start server
 mongoose.connect(MONGO_URI, {
-    useNewUrlParser: true,
+  useNewUrlParser: true,
     useUnifiedTopology: true,
     dbName: 'imagine' })
   .then(() => {
