@@ -17,7 +17,7 @@ const tripController = {
 
 // read
   getTrips: (req, res, next) => {
-    models.Trip.find( { user_id: req.session.user.id } ) 
+    models.Trip.find( { user_id: req.session.user.id } ).sort( { start_date: 1 } )
       .then(data => {
         res.locals.trips = data;
         return next();
@@ -48,7 +48,7 @@ const tripController = {
     models.Trip.findOne({
       start_date: 
         { $gte: new Date() }
-      })
+      }).sort( { start_date: 1 })
       .then(data => {
         res.locals.trip = data;
         console.log(res.locals.trip);
