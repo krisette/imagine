@@ -24,13 +24,20 @@ export default function CreateUser() {
 
   return (
     <div className="create-user">
-        <h2>Create User</h2>
+        <h4>create user account</h4>
         <form>
-          <label>Username</label>
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-          <label>Password</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-          <button type="submit" onClick={handleSubmit}>Submit</button>
+        <div id="username-field">
+          <label htmlFor="username"></label>
+          <input id="login-input" type="text" placeholder="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+        </div>
+        <div id="password-field">
+          <label htmlFor="password"></label>
+          <input id="login-input" type="password" placeholder="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        </div>
+        <div id="button-container">
+          <label htmlFor="submit"></label>
+          <button type="submit" onClick={handleSubmit}>create account</button>
+        </div>
         </form>
         <p>{createStatus}</p>
       </div>

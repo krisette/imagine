@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 
-const NewTrip = ({ userID }) => {
+const NewTrip = ({ userID, setIsShown }) => {
   const [start_date, setStartDate] = useState('');
   const [end_date, setEndDate] = useState('');
   const [hotel, setHotel] = useState('');
@@ -19,6 +19,7 @@ const NewTrip = ({ userID }) => {
       body: JSON.stringify(trip)
     }).then(() => {
       console.log('new trip added');
+      setIsShown(false);
     }).catch(err => console.log(err));
   }
 
@@ -50,14 +51,11 @@ const NewTrip = ({ userID }) => {
     const parkName = parksData[parkIndex].name;
     // if checkbox is checked, add park object to parks array
     if (e.target.checked) {
-      // select a date for the park
-      const parkDate = prompt(`What day would you like to go to ${parkName}? (YYYY-MM-DD)`);
-      // if date is valid, add park object to parks array
-      if (parkDate) {
-        const parkObj = { name: parkName, date: parkDate };
-        setParks(current => [...current, parkObj]);
+      const parkObj = { name: parkName, date: '', reservations: false };
+      setParks(current => {
+        return [...current, parkObj];
+      });
       }
-    } 
     else {
       // if checkbox is unchecked, remove park object from parks array
       setParks(current => current.filter(park => park.name !== parkName));

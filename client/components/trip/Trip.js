@@ -33,7 +33,7 @@ export default function Trip( {trip} ) {
     <div className="trip-container">
       <div className="trip-row">
       <div className="trip-dates">{dateConverter(trip.start_date)} - {dateConverter(trip.end_date)}</div>
-      <div className="trip-parks">{parkName(trip.parks)}</div>
+      <div className="trip-parks">Walt Disney World</div>
       <div className="trip-button">
           <button onClick={handleClick}>Details</button>
       </div>

@@ -9,17 +9,15 @@ const Home = ( { user, userID } ) => {
 
   useEffect(() => {
     const getTrips = () => {
-      // how do i get the user id here so i can fetch only the trips for that user?
       fetch(`/trips/${userID}`)
         .then(res => res.json())
         .then(data => {
-          console.log(`when fetching trips, the userID is ${userID}`);
           setTrips(data);
         })
         .catch(err => console.log(err));
     }
     getTrips();
-  }, []);
+  }, [trips]);
 
   const handleClick = () => {
     setIsShown(current => !current);
@@ -39,7 +37,7 @@ const Home = ( { user, userID } ) => {
         <div className="trip-buttons">
           <button onClick={handleClick}>Add New Trip</button>
         </div>
-        {isShown && <NewTrip key="newTrip" userID={userID} />}
+        {isShown && <NewTrip key="newTrip" userID={userID} setIsShown={setIsShown} />}
       </div>
   )
 }

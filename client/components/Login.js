@@ -1,10 +1,22 @@
 import React, { useState } from 'react';
 import CreateUser from './CreateUser.js';
+import '../stylesheets/_login.scss';
+import logo from '../images/logo.png';
 
 const Login = ( {setLoginStatus, setUser, setUserID} ) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [loginDisplayStatus, setLoginDisplayStatus] = useState('');
+  const [isShown, setIsShown] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  }
+
+  const handleBlur = () => {
+    setIsFocused(false);
+  }
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -35,20 +47,33 @@ const Login = ( {setLoginStatus, setUser, setUserID} ) => {
     });
   }
 
+  const handleClick = () => {
+    setIsShown(current => !current);
+  }
+
   return (
     <div className="user-container">
       <div className="login">
-        <h2>Login</h2>
+        <div id="login-title">
+          <img src={logo} alt="Imagine Logo" />
+        </div>
         <form onSubmit={handleSubmit}>
-          <label>Username</label>
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-          <label>Password</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-          <button type="submit">Submit</button>
+          <div id="username-field">
+            <label htmlFor="username" className="placeholder">username</label>
+            <input id="login-input" type="text" placeholder=" " value={username} onChange={(e) => { setUsername(e.target.value)}} required />
+          </div>
+          <div id="password-field">
+            <label htmlFor="password">password</label>
+            <input id="login-input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          </div>
+          <div id="button-container">
+            <label htmlFor="submit"></label>
+          <button type="submit">log in</button>
+          </div>
         </form>
-        <p>{loginDisplayStatus}</p>
       </div>
-      < CreateUser />
+      <div className="sign-up">don't have an account? <a onClick={handleClick}>create one</a></div>
+      {isShown && <CreateUser key="create-user" />}
     </div>
   )
 }
