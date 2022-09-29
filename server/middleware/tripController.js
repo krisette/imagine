@@ -45,7 +45,7 @@ const tripController = {
   },
 
   getUpcomingTrip: (req, res, next) => {
-    models.Trip.find({
+    models.Trip.findOne({
       start_date: 
         { $gte: new Date() }
       })

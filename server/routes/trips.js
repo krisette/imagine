@@ -33,19 +33,19 @@ router.get('/',
 router.post('/',
   tripController.createTrip,
   (req, res) => {
-  res.status(201).send('u created a trip lol')
+  res.status(201);
 });
 
 router.put('/:id',
   tripController.updateTrip,
   (req, res) => {
-  res.status(200).send('u updated a trip lol')
+  res.status(200);
 });
 
 router.delete('/:id',
   tripController.deleteTrip,
   (req, res) => {
-  res.status(200).send('u deleted a trip lol')
+  res.status(200);
 });
 
 module.exports = router
