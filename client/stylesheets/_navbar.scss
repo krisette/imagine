@@ -1,0 +1,28 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: rgba(95, 95, 95, 0.382);
+  color: white;
+  font-family: Helvetica;
+  font-weight: 300;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.navbar__title {
+  margin-right: auto;
+  font-size: 1rem;
+  padding: 5px 16x;
+}
+
+.navbar__item {
+  padding: 5px 16px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.navbar__item:hover {
+  background: rgba(0, 0, 0, 0.2);
+}

@@ -1,10 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import '_colors';
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&display=swap');
+
 
 body {
-  background: linear-gradient(180deg, #DCB9C5 0%, #98B6CC 50%, #E9D2C7 100%);
+  background: linear-gradient(60deg, #DCB9C5 0%, #98B6CC 50%, #E9D2C7 100%);
   background-attachment: fixed;
+  color: $text-color;
+  font-family: Graphik, 'Nunito Sans', sans-serif;
 }
 
 #root {
@@ -12,15 +14,25 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 a {
-  color: #000;
+  color: $primary-dark-color;
   text-decoration: none;
-  text-transform: lowercase;
+  font-weight: bold;
 
   &:hover {
-    color: #000;
     text-decoration: underline;
     cursor: pointer;
   }

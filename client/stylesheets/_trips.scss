@@ -1,12 +1,17 @@
-.trip-container {
-  font-family: Arial, Helvetica, sans-serif;
+.all-trips {
+  width: 100%;
 }
 
 .trip-row {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  width: 100%;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 .trip-dates {
@@ -25,13 +30,36 @@
   text-align: center;
 }
 
+#details-edit-text {
+  text-align: center;
+}
+
 .trip-details {
   display: flex;
   flex-direction: column;
+  align-items: left;
+  justify-content: left;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.park-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: left;
+}
+
+#park-details-name-and-date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 1rem;
+}
+
+#park-details-reservation {
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.park-details {
-  text-align: left;
-}

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Public+Sans&display=swap');
+@import '_colors';
 
 .user-container {
   font-family: Arial, Helvetica, sans-serif;
@@ -7,17 +8,16 @@
 
 .login {
   background-color: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgb(136, 136, 136);
-  border-radius: 3px;
-  margin: 0 0 5px;
+  border: 1px solid rgb(221, 221, 221);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0px 6px 16px 0px rgba(0, 0, 0, 0.24);
+  border-radius: 12px;
   height: 20%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 25px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 8px 0 rgba(0, 0, 0, 0.19);
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }
 
 #login-title {
@@ -82,13 +82,13 @@
   font-size: 12px;
 }
 
-button {
+#login-button {
   width: 30vh;
   max-width: 80%;
   margin-top: 10px;
   cursor: pointer;
-  font-size: 15px;
-  background-image: linear-gradient(#6f99cb, #458dc1);
+  font-size: 12px;
+  background-image: linear-gradient($secondary-color, $primary-color);
   border: 0;
   border-radius: 5px;
   color: #fff;
@@ -97,8 +97,9 @@ button {
 
 .sign-up, .create-user {
   background-color: rgba(255, 255, 255, 0.5);
-  border: 1px solid rgb(136, 136, 136);
-  border-radius: 3px;
+  border: 1px solid rgb(221, 221, 221);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0px 6px 16px 0px rgba(0, 0, 0, 0.24);
+  border-radius: 12px;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -107,5 +108,5 @@ button {
   font-size: 12px;
   color: gray;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 8px 0 rgba(0, 0, 0, 0.19);
-  margin-bottom: 15px;
+  margin-bottom: 25px;
 }

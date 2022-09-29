@@ -1,0 +1,61 @@
+@import '_colors';
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+  font-size: 10pt;
+}
+
+.main {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgb(221, 221, 221);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12), 0px 6px 16px 0px rgba(0, 0, 0, 0.24);
+  border-radius: 12px;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 2px 8px 0 rgba(0, 0, 0, 0.19);
+  margin-top: 25px;
+  width: 70%;
+}
+
+.upcoming-trip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+}
+
+#wow-a-trip {
+  font-size: 1.3rem;
+}
+
+#wow-a-trip-numbers {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+  font-size: 12px;
+  background-image: linear-gradient($secondary-color, $primary-color);
+  border: 0;
+  border-radius: 5px;
+  color: #fff;
+  padding: 5px 20px;
+  transition: background-color 0.4s ease-in-out;
+}
+
+button:hover {
+  background-color: $accent-color;
+}
