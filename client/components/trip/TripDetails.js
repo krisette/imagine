@@ -7,6 +7,46 @@ export default function TripDetails( {trip} ) {
   const [parks, setParks] = useState(trip.parks);
 
 
+
+  const updateStartDate = (e) => {
+    const newStartDate = prompt('What is the new start date? (YYYY-MM-DD)');
+    if (newStartDate) {
+      const convertedDate = new Date(newStartDate);
+      console.log(convertedDate);
+      setStartDate(convertedDate);
+    }
+  }
+
+  const updateEndDate = (e) => {
+    const newEndDate = prompt('What is the new end date? (YYYY-MM-DD)');
+    if (newEndDate) {
+      setEndDate(newEndDate);
+    }
+  }
+
+  const updateHotel = (e) => {
+    const newHotel = prompt('What is the new hotel?');
+    if (newHotel) {
+      setHotel(newHotel);
+    }
+  }
+
+  const updateParkDate = (e, id) => {
+    const newParkDate = prompt('What is the new park date? (YYYY-MM-DD)');
+    // change park date in state to new date
+    if (newParkDate) {
+      const parkIndex = id;
+      const parkName = parks[parkIndex].name;
+      const parkDate = newParkDate;
+      const parkRes = parks[parkIndex].reservations;
+      const parkObj = { name: parkName, date: parkDate, reservations: parkRes };
+      setParks(current => {
+        const newParks = current.filter(park => park.name !== parkName);
+        return [...newParks, parkObj];
+      });
+    }
+  }
+
   const handleResCheck = (e) => {
     if (e.target.checked) {
       // change park reservation status to true
@@ -31,32 +71,6 @@ export default function TripDetails( {trip} ) {
     }
   }
   
-  
-
-  const updateStartDate = (e) => {
-    const newStartDate = prompt('What is the new start date? (YYYY-MM-DD)');
-    if (newStartDate) {
-      const convertedDate = new Date(newStartDate);
-      console.log(convertedDate);
-      setStartDate(convertedDate);
-    }
-  }
-
-
-  const updateEndDate = (e) => {
-    const newEndDate = prompt('What is the new end date? (YYYY-MM-DD)');
-    if (newEndDate) {
-      setEndDate(newEndDate);
-    }
-  }
-
-  const updateHotel = (e) => {
-    const newHotel = prompt('What is the new hotel?');
-    if (newHotel) {
-      setHotel(newHotel);
-    }
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const updatetrip = { start_date, end_date, hotel, parks };
@@ -75,14 +89,23 @@ export default function TripDetails( {trip} ) {
     return newDate.toLocaleDateString();
   }
 
+  // converts invalid date from db to "pick a date"
+  const invalidDate = (date) => {
+    if (dateConverter(date) === '12/31/1969') {
+      return 'Pick a date for';
+    } else {
+      return dateConverter(date);
+    }
+  }
+
   return (
     <div className="trip-details">
       {trip.parks.map((park, index) => {
         return (
           <div className="park-details">
-            <div id="park-details-name-and-date">{park.name} - {dateConverter(park.date)}</div>
-            <div id="park-details-reservation">Reservation:
-              <input type="checkbox" defaultChecked={park.reservations} onChange={handleResCheck} value={index} /></div>
+            <div id="park-details-name-and-date"><a onClick={(e) => updateParkDate(e, index)}>{invalidDate(park.date)}</a>: {park.name}</div>
+            <div id="park-details-reservation">
+              <input type="checkbox" defaultChecked={park.reservations} onChange={handleResCheck} value={index} /> Reservation</div>
           </div>
         )
       })}

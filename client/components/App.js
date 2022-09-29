@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-// import './App.css';
+import '../stylesheets/_app.scss';
 import Home from './Home.js';
 import Login from './Login.js';
 import NavBar from './NavBar.js';
+
 
 const App = () => {
   const [loginStatus, setLoginStatus] = useState(false);
@@ -33,9 +34,9 @@ const App = () => {
 
   return (
       <div className="main-container">
-        <NavBar />
-         <h1>iMaGiNaShUN</h1>
-      <Home user={user} userID={userID} />
+        <NavBar user={user} />
+        <p></p>
+      <Home userID={userID} />
       </div>
     )
 }

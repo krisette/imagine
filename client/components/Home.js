@@ -1,7 +1,9 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import Trip from './Trip/Trip';
+import AllTrips from './trip/AllTrips';
 import NewTrip from './Trip/NewTrip';
+import logo from '../images/logo.png';
+import UpcomingTrip from './trip/UpcomingTrip';
 
 const Home = ( { user, userID } ) => {
   const [trips, setTrips] = useState(null);
@@ -25,15 +27,9 @@ const Home = ( { user, userID } ) => {
 
   return (
     <div className="main">
-      <p>WeLcOmE HoMe, {user} !!!</p>
-      <div className="Trips">
-        <h2>All Trips</h2>
-          {trips && trips.map((trip, index) => {
-            return (
-              <Trip key={index} trip={trip} />
-            )
-          })}
-        </div>
+      <img src={logo} alt="Imagine Logo" />
+      <UpcomingTrip userID={userID} />
+      <AllTrips trips={trips} />
         <div className="trip-buttons">
           <button onClick={handleClick}>Add New Trip</button>
         </div>

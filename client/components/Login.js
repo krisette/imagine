@@ -59,20 +59,20 @@ const Login = ( {setLoginStatus, setUser, setUserID} ) => {
         </div>
         <form onSubmit={handleSubmit}>
           <div id="username-field">
-            <label htmlFor="username" className="placeholder">username</label>
+            <label htmlFor="username" className="placeholder">Username</label>
             <input id="login-input" type="text" placeholder=" " value={username} onChange={(e) => { setUsername(e.target.value)}} required />
           </div>
           <div id="password-field">
-            <label htmlFor="password">password</label>
+            <label htmlFor="password">Password</label>
             <input id="login-input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
           </div>
           <div id="button-container">
             <label htmlFor="submit"></label>
-          <button type="submit">log in</button>
+          <button id="login-button" type="submit">Log In</button>
           </div>
         </form>
       </div>
-      <div className="sign-up">don't have an account? <a onClick={handleClick}>create one</a></div>
+      <div className="sign-up">Don't have an account? <a onClick={handleClick}>Create one</a></div>
       {isShown && <CreateUser key="create-user" />}
     </div>
   )
