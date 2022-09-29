@@ -1,3 +1,5 @@
+@import '_colors';
+
 .all-trips {
   width: 100%;
 }
@@ -40,7 +42,7 @@
   align-items: left;
   justify-content: left;
   width: 60%;
-  margin: 0 auto;
+  margin: 0 auto 1rem;
 }
 
 .park-details {
@@ -63,3 +65,95 @@
   justify-content: center;
 }
 
+.res-checkbox, .park-checkbox {
+  accent-color: $primary-dark-color;
+}
+
+.new-trip {
+  margin-top: 20px;
+
+  input {
+    max-width: 80%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: $text-color;
+    font-size: 12px;
+  }
+}
+
+.new-date-range, .new-hotel {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+}
+
+.new-date-range {
+  margin: 10px;
+}
+
+.new-hotel {
+  margin-top: 5px;
+}
+
+.new-parks {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  margin: 10px;
+}
+
+.new-trip-2nd-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+#start-date, #new-hotel-label-container {
+  margin-right: 10px;
+  align-items: flex-start;
+}
+
+.new-hotel-input-container {
+  width: auto;
+  justify-content: right;
+}
+
+small {
+  color: $secondary-black;
+}
+
+.add-trip-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#details-button{
+  cursor: pointer;
+  font-size: 12px;
+  background-color: transparent;
+  border: 1px solid $primary-color;
+  border-radius: 5px;
+  color: $secondary-black;
+  padding: 5px 20px;
+  transition: background-color 0.4s ease-in-out;
+}
+
+#details-button:hover {
+  background-color: $tertiary-color;
+}
+
+#trip-details-change-menu, #submit-changes-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#submit-changes-container {
+  margin-top: 10px;
+}

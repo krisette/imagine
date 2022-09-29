@@ -48,7 +48,7 @@
 button {
   cursor: pointer;
   font-size: 12px;
-  background-image: linear-gradient($secondary-color, $primary-color);
+  background-color: $primary-color;
   border: 0;
   border-radius: 5px;
   color: #fff;
@@ -57,5 +57,5 @@ button {
 }
 
 button:hover {
-  background-color: $accent-color;
+  background-color: $primary-dark-color;
 }
