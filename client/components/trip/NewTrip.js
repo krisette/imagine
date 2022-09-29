@@ -8,10 +8,11 @@ const NewTrip = ({ userID, setIsShown }) => {
   const [parksData, setParksData] = useState('');
   const [parks, setParks] = useState([]);
 
+  // adds new trip to db
   const handleSubmit = (e) => {
     e.preventDefault();
     const trip = { start_date, end_date, hotel, parks, user_id: userID };
-    console.log(`the current userID is ${userID}`);
+    setIsShown(false);
 
     fetch('/trips', {
       method: 'POST',
@@ -24,7 +25,6 @@ const NewTrip = ({ userID, setIsShown }) => {
   }
 
   // fetch list of parks from api and store in state
-  // maybe should just hardcode this? pls see your own to-do list
   useEffect(() => {
     fetch('/trips/parks')
       .then(res => res.json())
@@ -33,19 +33,8 @@ const NewTrip = ({ userID, setIsShown }) => {
       })
       .catch(err => console.log(err));
   }, []);
-    
-    // const parkList = parksData;
-  // list of parks in checkbox form
-  // const parkCheckboxes = parkList.map((parkObj, index) => {
-  //   return (
-  //     <div key={index} className="checkboxWithLabel">
-  //       <input type="checkbox" className="parkCheckbox" value={index} onChange={handleParkCheck}></input>
-  //       <span className="checkboxLabel">{parkObj.name}</span>
-  //     </div>
-  //   );
-  // });
 
-  // handle checkbox change
+  // handle parkscheckbox change
   const handleParkCheck = (e) => {
     const parkIndex = e.target.value;
     const parkName = parksData[parkIndex].name;
@@ -62,27 +51,65 @@ const NewTrip = ({ userID, setIsShown }) => {
     }
   }
 
+  // TODO: convert all date handlers to moment.js or luxon
+  // disabling below for demo
+  /* const startDateValidator = (value) => {
+    const today = new Date().toJSON().slice(0, 10)
+    if (value < today) {
+      return alert('You cannot travel back in time! Please pick a date in the future.');
+    }
+    else {
+      setStartDate(value);
+    }
+  }
+
+  const endDateValidator = (value) => {
+    if (value < start_date) {
+      return alert('You cannot end your trip before it begins!\nPlease pick a new end date.');
+    }
+    else {
+      setEndDate(value);
+    }
+  } */
 
   return (
     <div className="new-trip">
-      <h2>New Trip</h2>
-      <form>
-        <label>Start Date</label>
-        <input type="date" value={start_date} onChange={(e) => setStartDate(e.target.value)} />
-        <label>End Date</label>
-        <input type="date" value={end_date} onChange={(e) => setEndDate(e.target.value)} />
-        <label>Hotel</label>
-        <input type="text" value={hotel} onChange={(e) => setHotel(e.target.value)} />
-        <label>Parks</label>
+      <form onSubmit={handleSubmit}>
+        <div className="new-date-range">
+          <div id="start-date">
+            <label htmlFor="startdate">Start Date </label>
+            <input type="date" value={start_date} onChange={(e) => setStartDate(e.target.value)} required />
+          </div>
+          <div id="end-date">
+            <label htmlFor="enddate">End Date </label>
+            <input type="date" value={end_date} onChange={(e) => setEndDate(e.target.value)} required />
+          </div>
+        </div>
+      <div className="new-trip-2nd-row">
+        <div className="new-parks">
+        <label htmlFor="parks">Parks:</label> <small>(Select all that apply)</small>
         {parksData && parksData.map((parkObj, index) => {
             return (
               <div key={index} className="checkboxWithLabel">
-                  <input type="checkbox" className="parkCheckbox" value={index} onChange={handleParkCheck}></input> 
+                  <input type="checkbox" className="park-checkbox" value={index} onChange={handleParkCheck}></input> 
                 <span className="checkboxLabel">{parkObj.name}</span>
               </div>
             );
           })}
-        <button type="submit" onClick={handleSubmit}>Submit</button>
+        </div>
+
+        <div className="new-hotel">
+          <div id="new-hotel-label-container">
+            <label>Hotel </label>
+          </div>
+          <div id="new-hotel-input-container">
+          <input type="text" value={hotel} onChange={(e) => setHotel(e.target.value)} required />
+          </div>
+        </div>
+        </div>
+        <div className="add-trip-button-container">  
+          <button type="submit">Submit New Trip</button>
+        </div>
       </form>
     </div>
   )

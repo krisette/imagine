@@ -11,6 +11,8 @@ const App = () => {
   // const [userSession, setUserSession] = useState(true);
   const [user, setUser] = useState();
   const [userID, setUserID] = useState();
+  const [allTripsShown, setAllTripsShown] = useState(false);
+  
   
   // useEffect(() => {
   //   const checkUserAuth = () => {
@@ -34,9 +36,9 @@ const App = () => {
 
   return (
       <div className="main-container">
-        <NavBar user={user} />
+        <NavBar user={user} setAllTripsShown={setAllTripsShown} />
         <p></p>
-      <Home userID={userID} />
+      <Home userID={userID} allTripsShown={allTripsShown} />
       </div>
     )
 }

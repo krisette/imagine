@@ -1,23 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-export default function UpcomingTrip( {userID} ) {
-  const [upcomingTrip, setUpcomingTrip] = useState({});
-  
-  useEffect(() => {
-    const getUpcomingTrip = () => {
-      fetch(`/trips/upcoming/${userID}`)
-        .then(res => res.json())
-        .then(data => {
-          setUpcomingTrip(data);
-        })
-        .catch(err => console.log(err));
-    }
-    getUpcomingTrip();
-  }, []);
+export default function UpcomingTrip( {upcomingTrip} ) {
 
   const dateConverter = (date) => {
     const newDate = new Date(date);
-    return newDate.toLocaleDateString();
+    return newDate.toLocaleString('en-US', { timeZone: 'UTC', year: 'numeric', month: '2-digit', day: '2-digit' });
   }
 
   const differenceInDays = (date) => {
@@ -28,15 +15,15 @@ export default function UpcomingTrip( {userID} ) {
     return days;
   }
 
-  const convertedStartDate = dateConverter(upcomingTrip.start_date);
-
   const daysUntilTrip = differenceInDays(upcomingTrip.start_date);
 
   return (
     <div className="upcoming-trip">
           <div className="upcoming-recent-trip">
-            <p id="wow-a-trip">You have a trip to Walt Disney World in <span id="wow-a-trip-numbers">{daysUntilTrip} day{daysUntilTrip > 1 ? 's' : null}!</span></p>
-            <p>Next vacation: {convertedStartDate} - {dateConverter(upcomingTrip.end_date)}</p>
+            <p id="wow-a-trip">You have a trip to Walt Disney World <span id="wow-a-trip-numbers">
+              {daysUntilTrip === 0 ? 'TODAY!' : 'in '}
+              {daysUntilTrip > 1 ? `${daysUntilTrip} days!` : null}{daysUntilTrip === 1 ? '1 day!' : null}</span></p>
+            <p>Next vacation: {dateConverter(upcomingTrip.start_date)} - {dateConverter(upcomingTrip.end_date)}</p>
           </div>
     </div>
   )

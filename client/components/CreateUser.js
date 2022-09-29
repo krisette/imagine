@@ -24,7 +24,7 @@ export default function CreateUser() {
 
   return (
     <div className="create-user">
-        <h4>create user account</h4>
+        <h4>Create an Imagine Account</h4>
         <form>
         <div id="username-field">
           <label htmlFor="username"></label>
