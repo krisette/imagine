@@ -4,6 +4,6 @@ Imagine is a trip planning/management web app to assist you with your magical tr
 ## Built with...
 - MongoDB
 - Mongoose ODM
-- Express
 - React
-- Node.js
+- Node.js & Express
+- Webpack
