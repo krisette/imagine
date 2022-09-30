@@ -6,17 +6,8 @@ import logo from '../images/logo.png';
 const Login = ( {setLoginStatus, setUser, setUserID} ) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [loginDisplayStatus, setLoginDisplayStatus] = useState('');
+  // const [loginDisplayStatus, setLoginDisplayStatus] = useState('');
   const [isShown, setIsShown] = useState(false);
-  const [isFocused, setIsFocused] = useState(false);
-
-  const handleFocus = () => {
-    setIsFocused(true);
-  }
-
-  const handleBlur = () => {
-    setIsFocused(false);
-  }
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -59,11 +50,11 @@ const Login = ( {setLoginStatus, setUser, setUserID} ) => {
         </div>
         <form onSubmit={handleSubmit}>
           <div id="username-field">
-            <label htmlFor="username" className="placeholder">Username</label>
-            <input id="login-input" type="text" placeholder=" " value={username} onChange={(e) => { setUsername(e.target.value)}} required />
+            <label htmlFor="username" className={username && "filled"}>Username</label>
+            <input id="login-input" type="text" placeholder=" " value={username} onChange={(e) => setUsername(e.target.value)} required />
           </div>
           <div id="password-field">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password" className={password && "filled"}>Password</label>
             <input id="login-input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
           </div>
           <div id="button-container">
