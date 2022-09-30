@@ -47,7 +47,8 @@ const tripController = {
   getUpcomingTrip: (req, res, next) => {
     models.Trip.findOne({
       start_date: 
-        { $gte: new Date() }
+        { $gte: new Date() },
+      user_id: req.session.user.id
       }).sort( { start_date: 1 })
       .then(data => {
         res.locals.trip = data;

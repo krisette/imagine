@@ -20,7 +20,7 @@ export default function UpcomingTrip( {upcomingTrip} ) {
   return (
     <div className="upcoming-trip">
           <div className="upcoming-recent-trip">
-            <p id="wow-a-trip">You have a trip to Walt Disney World <span id="wow-a-trip-numbers">
+            <p id="wow-a-trip">You're going to Walt Disney World <span id="wow-a-trip-numbers">
               {daysUntilTrip === 0 ? 'TODAY!' : 'in '}
               {daysUntilTrip > 1 ? `${daysUntilTrip} days!` : null}{daysUntilTrip === 1 ? '1 day!' : null}</span></p>
             <p>Next vacation: {dateConverter(upcomingTrip.start_date)} - {dateConverter(upcomingTrip.end_date)}</p>
