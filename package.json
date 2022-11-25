@@ -1,0 +1,43 @@
+{
+  "name": "imagine",
+  "version": "2.0.0",
+  "description": "A trip planning/management web app to assist you with your magical trips to Disney.",
+  "main": "index.ts",
+  "scripts": {
+    "build": "npx tsc",
+    "dev": "nodemon server/server.ts",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krisette/imagine.git"
+  },
+  "author": "Krisette Odegard",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/krisette/imagine/issues"
+  },
+  "homepage": "https://github.com/krisette/imagine#readme",
+  "dependencies": {
+    "-": "^0.0.1",
+    "@apollo/server": "^4.2.1",
+    "@reduxjs/toolkit": "^1.9.0",
+    "apollo-server-express": "^3.11.1",
+    "graphql": "^16.6.0",
+    "mongoose": "^6.7.3",
+    "nexus": "^1.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.14",
+    "@types/node": "^18.11.9",
+    "concurrently": "^7.6.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.20",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.3",
+    "webpack": "^5.75.0"
+  }
+}
