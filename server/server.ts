@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import { ApolloServer } from 'apollo-server-express';
 import { typeDefs } from './typeDefs';
 import { resolvers } from './resolvers';
-import { Request, Response } from 'express';
+// import { Request, Response } from 'express';
 
 dotenv.config();
 const mongoose = require('mongoose');
@@ -27,6 +27,9 @@ const startApolloServer = async () => {
   dbName: 'imagine'})
   .then(() => {
     console.log(`⚡️[server]: db connected`);
+  })
+  .catch((err: Error) => {
+    console.log(`⚡️[server]: error connecting to db: `, err)
   });
 
   server.applyMiddleware({ app });
