@@ -1,3 +1,5 @@
+/* eslint-disable import/extensions */
+/* eslint-disable no-console */
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -9,43 +11,42 @@ import { resolvers } from './resolvers';
 
 dotenv.config();
 const mongoose = require('mongoose');
+
 const app = express();
 app.use(cors());
 
 const startApolloServer = async () => {
   const server = new ApolloServer({
     typeDefs,
-    resolvers
+    resolvers,
   });
 
   await server.start();
 
   // connect to db before starting server
   await mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  dbName: 'imagine'})
-  .then(() => {
-    console.log(`⚡️[server]: db connected`);
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    dbName: 'imagine',
   })
-  .catch((err: Error) => {
-    console.log(`⚡️[server]: error connecting to db: `, err)
-  });
+    .then(() => {
+      console.log('⚡️[server]: db connected');
+    })
+    .catch((err: Error) => {
+      console.log('⚡️[server]: error connecting to db: ', err);
+    });
 
   server.applyMiddleware({ app });
 
-  app.listen({ port: process.env.PORT }, () =>
-    console.log(`🚀[server]: ready at http://localhost:${process.env.PORT}${server.graphqlPath}`)
-  );
+  app.listen({ port: process.env.PORT }, () => console.log(`🚀[server]: ready at http://localhost:${process.env.PORT}${server.graphqlPath}`));
 };
 
 startApolloServer();
 
 // connect to db
 
-
 // // enable CORS
-// 
+//
 
 // // parse json
 // app.use(express.json());
@@ -71,6 +72,6 @@ startApolloServer();
 //   .catch((err: Error) => {
 //     console.log('error connecting to db', err);
 //   });
-  
+
 // error handler for unknown route
 // app.use((req: Request, res: Response) => res.status(404).send("404: No magic here!"));

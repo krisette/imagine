@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 // trips schema
 const tripSchema = new Schema({
@@ -12,12 +12,12 @@ const tripSchema = new Schema({
     name: { type: String, required: true },
     date: { type: Date },
     reservations: { type: Boolean, default: false },
-    tickets: { type: Boolean, default: false }
+    tickets: { type: Boolean, default: false },
   }],
   user_id: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
 export const Trip = mongoose.model('trip', tripSchema);
@@ -35,8 +35,8 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   trips: [{
     type: Schema.Types.ObjectId,
-    ref: 'trip'
-  }]
+    ref: 'trip',
+  }],
 });
 
 export const User = mongoose.model('user', userSchema);
@@ -44,7 +44,7 @@ export const User = mongoose.model('user', userSchema);
 // sessions schema
 const sessionSchema = new Schema({
   cookieId: { type: String, required: true, unique: true },
-  createdAt: { type: Date, expires: 3600, default: Date.now }
+  createdAt: { type: Date, expires: 3600, default: Date.now },
 });
 
 export const Session = mongoose.model('session', sessionSchema);

@@ -1,6 +1,6 @@
 import { Trip } from './models';
 
-export const resolvers = {
+const resolvers = {
   Query: {
     hello: () => 'Hello world!',
     getAllTrips: async () => {
@@ -9,10 +9,12 @@ export const resolvers = {
     },
     getUpcomingTrip: async () => {
       const trip = await Trip.findOne({
-      start_date: 
+        start_date:
         { $gte: new Date() },
-      }).sort( { start_date: 1 })
+      }).sort({ start_date: 1 });
       return trip;
-    }
+    },
   },
 };
+
+export default resolvers;

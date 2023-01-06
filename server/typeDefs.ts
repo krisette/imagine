@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server-express';
 
-export const typeDefs = gql`
+const typeDefs = gql`
   type Query {
     hello: String
     getAllTrips: [Trip]
@@ -24,4 +24,6 @@ export const typeDefs = gql`
     reservations: Boolean
     tickets: Boolean
   }
-`
+`;
+
+export default typeDefs;
