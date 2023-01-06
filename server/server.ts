@@ -1,13 +1,12 @@
 /* eslint-disable import/extensions */
 /* eslint-disable no-console */
-import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 // const path = require('path');
+import express, { Request, Response } from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import typeDefs from './typeDefs';
 import resolvers from './resolvers';
-// import { Request, Response } from 'express';
 
 dotenv.config();
 const mongoose = require('mongoose');
@@ -43,6 +42,10 @@ const startApolloServer = async () => {
 
 startApolloServer();
 
+app.get('/', (req: Request, res: Response) => {
+  res.send('Express + TypeScript Server');
+});
+
 // connect to db
 
 // // enable CORS
@@ -55,9 +58,6 @@ startApolloServer();
 // app.use(express.static(path.join(__dirname, 'build')));
 
 // // serve main page
-// app.get('/', (req: Request, res: Response) => {
-//   res.send('Express + TypeScript Server');
-// });
 
 // // connect to db and start server
 // mongoose.connect(process.env.MONGO_URI, {

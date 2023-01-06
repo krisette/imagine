@@ -2,11 +2,13 @@
     "env": {
         "browser": true,
         "es2021": true,
-        "node": true
+        "node": true,
+        "jest/globals": true
     },
     "extends": [
         "plugin:react/recommended",
-        "airbnb"
+        "airbnb",
+        "plugin:import/typescript"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -18,8 +20,22 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "jest"
     ],
     "rules": {
+        "react/jsx-filename-extension": [1, { "extensions": [".tsx", ".ts"] }],
+        "import/no-unresolved": 0, // Turn off "Unable to resolve path to module ..." error
+        "import/extensions": 0 // Turn off "Missing file extension for ..." error
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        },
+        "import/no-unresolved": 0, // Turn off "Unable to resolve path to module ..." error
+        "import/extensions": 0 // Turn off "Missing file extension for ..." error
+        
     }
 }
