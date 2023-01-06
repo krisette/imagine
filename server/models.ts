@@ -20,14 +20,14 @@ const tripSchema = new Schema({
   }
 });
 
-const Trip = mongoose.model('trip', tripSchema);
+export const Trip = mongoose.model('trip', tripSchema);
 
 // parks schema
 const parkSchema = new Schema({
   name: { type: String, required: true },
 });
 
-const Park = mongoose.model('park', parkSchema);
+export const Park = mongoose.model('park', parkSchema);
 
 // users schema
 const userSchema = new Schema({
@@ -39,7 +39,7 @@ const userSchema = new Schema({
   }]
 });
 
-const User = mongoose.model('user', userSchema);
+export const User = mongoose.model('user', userSchema);
 
 // sessions schema
 const sessionSchema = new Schema({
@@ -47,7 +47,4 @@ const sessionSchema = new Schema({
   createdAt: { type: Date, expires: 3600, default: Date.now }
 });
 
-const Session = mongoose.model('session', sessionSchema);
-
-// export all models
-module.exports = { Trip, Park, User, Session };
+export const Session = mongoose.model('session', sessionSchema);
