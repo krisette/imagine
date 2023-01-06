@@ -5,8 +5,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 // const path = require('path');
 import { ApolloServer } from 'apollo-server-express';
-import { typeDefs } from './typeDefs';
-import { resolvers } from './resolvers';
+import typeDefs from './typeDefs';
+import resolvers from './resolvers';
 // import { Request, Response } from 'express';
 
 dotenv.config();
