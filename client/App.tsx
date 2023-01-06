@@ -1,8 +1,11 @@
 import React from 'react';
+import UpcomingTrip from './components/UpcomingTrip';
 
 function App() {
   return (
-    <div>App</div>
+    <div className="container">
+      <UpcomingTrip />
+    </div>
   );
 }
 

@@ -24,6 +24,10 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
+        test: /\.s[ac]ss$/i,
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+      },
+      {
         test: /\.(jpe?g|png|gif|svg)$/i,
         use: ['file-loader'],
       },
