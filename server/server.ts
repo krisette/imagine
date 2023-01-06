@@ -1,5 +1,5 @@
 import express from 'express';
-// const cors = require('cors');
+import cors from 'cors';
 import dotenv from 'dotenv';
 // const path = require('path');
 import { ApolloServer } from 'apollo-server-express';
@@ -7,25 +7,21 @@ import { typeDefs } from './typeDefs';
 import { resolvers } from './resolvers';
 import { Request, Response } from 'express';
 
-// load environment variables & create express app
-const app = express();
 dotenv.config();
-
-// create graphql server
-const server = new ApolloServer({ typeDefs, resolvers });
-
-// apply graphql server to express
-server.start().then(() => {
-  server.applyMiddleware({ app });
-});
-
-app.listen({ port: process.env.PORT }, () =>
-  console.log(`🚀[server]: ready at http://localhost:${process.env.PORT}${server.graphqlPath}`)
-);
-
-// connect to db
 const mongoose = require('mongoose');
-mongoose.connect(process.env.MONGO_URI, {
+const app = express();
+app.use(cors());
+
+const startApolloServer = async () => {
+  const server = new ApolloServer({
+    typeDefs,
+    resolvers
+  });
+
+  await server.start();
+
+  // connect to db before starting server
+  await mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   dbName: 'imagine'})
@@ -33,8 +29,20 @@ mongoose.connect(process.env.MONGO_URI, {
     console.log(`⚡️[server]: db connected`);
   });
 
+  server.applyMiddleware({ app });
+
+  app.listen({ port: process.env.PORT }, () =>
+    console.log(`🚀[server]: ready at http://localhost:${process.env.PORT}${server.graphqlPath}`)
+  );
+};
+
+startApolloServer();
+
+// connect to db
+
+
 // // enable CORS
-// app.use(cors());
+// 
 
 // // parse json
 // app.use(express.json());
