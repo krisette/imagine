@@ -9,6 +9,7 @@ const GET_ALL_TRIPS = gql`
       start_date
       end_date
       resort
+      hotel
     }
   }
 `;
@@ -24,9 +25,13 @@ export default function AllTrips() {
       <table>
         <thead>
           <tr>
+            <th id="header" colSpan={5}>All Trips</th>
+          </tr>
+          <tr>
             <th>Start Date</th>
             <th>End Date</th>
             <th>Resort</th>
+            <th>Hotel</th>
             <th>
               <span className="sr-only">Edit</span>
             </th>
@@ -41,6 +46,7 @@ export default function AllTrips() {
               <td>{dayjs(trip.start_date).format('MM/DD/YYYY')}</td>
               <td>{dayjs(trip.end_date).format('MM/DD/YYYY')}</td>
               <td>{trip.resort}</td>
+              <td>{trip.hotel}</td>
               <td>
                 <button type="button">Edit</button>
               </td>

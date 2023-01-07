@@ -6,6 +6,7 @@ import express, { Request, Response } from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import typeDefs from './typeDefs';
 import resolvers from './resolvers';
+import authRouter from './routes/auth';
 
 dotenv.config();
 const mongoose = require('mongoose');
@@ -40,6 +41,8 @@ const startApolloServer = async () => {
 };
 
 startApolloServer();
+
+app.use('/auth', authRouter);
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Express + TypeScript Server');

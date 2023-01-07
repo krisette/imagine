@@ -9,23 +9,49 @@ table {
   border-collapse: collapse;
   margin: 0 auto;
   margin-bottom: 20px;
+  border-spacing: 0.5rem 2rem;
+}
+
+table tr {
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table thead tr:first-child {
+  font-size: 1.5rem;
+  color: #333;
+  padding: 10px;
 }
 
 table th {
-  text-align: left;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-
-table td {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+  padding: 5px 0.5em;
+  width: 10em;
 }
 
 table tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-table tr:hover {
+table > tbody > tr:hover {
   background-color: #ddd;
+}
+
+table td {
+  padding: 0.5em;
+  border-bottom: 1px solid #ddd;
+  width: 10.5em;
+}
+
+table > tbody > tr > td:nth-child(-n+2) {
+  min-width: 30px;
+  max-width: 30px;
+}
+
+table > tbody > tr > td:nth-last-child(2) {
+  max-width: 10px;
+  text-align: right;
+}
+
+table > tbody > tr > td:last-child {
+  max-width: 10px;
 }
