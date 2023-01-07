@@ -7,7 +7,7 @@ const tripSchema = new Schema({
   start_date: { type: Date, required: true },
   end_date: { type: Date, required: true },
   hotel: { type: String, required: true },
-  // parks: { type: String, required: true },
+  resort: { type: String, required: true },
   parks: [{
     name: { type: String, required: true },
     date: { type: Date },

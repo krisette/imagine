@@ -1,10 +1,10 @@
 import React from 'react';
-import UpcomingTrip from './components/UpcomingTrip';
+import TripContainer from './containers/TripContainer';
 
 function App() {
   return (
-    <div className="container">
-      <UpcomingTrip />
+    <div>
+      <TripContainer />
     </div>
   );
 }
