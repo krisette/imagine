@@ -16,6 +16,7 @@ import {
   ScrollArea,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import { Link } from 'react-router-dom'
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -126,8 +127,8 @@ export default function Navbar() {
             <a href="#" className={classes.link}>
               Manage Trips
             </a>
-            <a href="#" className={classes.link}>
-              Wait Times
+            <a href="/login" className={classes.link}>
+              Login Test
             </a>
           </Group>
 

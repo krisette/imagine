@@ -1,12 +1,12 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import TripContainer from './containers/TripContainer';
 
 function App() {
   return (
     <div>
       <Navbar />
-      <TripContainer />
+      <Outlet />
     </div>
   );
 }
