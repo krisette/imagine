@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery, gql } from '@apollo/client';
+import {
+  createStyles, Table, Checkbox,
+} from '@mantine/core';
+
+const useStyles = createStyles((theme) => ({
+  rowSelected: {
+    backgroundColor:
+      theme.colorScheme === 'dark'
+        ? theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.2)
+        : theme.colors[theme.primaryColor][0],
+  },
+}));
 
 const dayjs = require('dayjs');
 
 const GET_ALL_TRIPS = gql`
   query {
     getAllTrips {
+      id
       start_date
       end_date
       resort
@@ -15,48 +28,51 @@ const GET_ALL_TRIPS = gql`
 `;
 
 export default function AllTrips() {
+  const { classes, cx } = useStyles();
+  const [selection, setSelection] = useState(['1']);
   const { data, loading, error } = useQuery(GET_ALL_TRIPS);
-
   if (loading) return <div className="component">Loading...</div>;
   if (error) return <div className="component">{error.message}</div>;
 
+  const toggleRow = (id: string) => setSelection((current) => (current.includes(id) ? current.filter((item: any) => item !== id) : [...current, id]));
+  const toggleAll = () => setSelection((current) => (current.length === data.getAllTrips.length ? [] : data.getAllTrips.map((item: any) => item.id)));
+
+  const rows = data.getAllTrips.map((item: any) => {
+    const selected = selection.includes(item.id);
+    return (
+      <tr key={item.id} className={cx({ [classes.rowSelected]: selected })}>
+        <td>
+          <Checkbox
+            checked={selection.includes(item.id)}
+            onChange={() => toggleRow(item.id)}
+            transitionDuration={0}
+          />
+        </td>
+        <td>{`${dayjs(item.start_date).format('M/D/YY')} - ${dayjs(item.end_date).format('M/D/YY')}`}</td>
+        <td>{item.resort}</td>
+        <td>{item.hotel}</td>
+      </tr>
+    );
+  });
+
   return (
-    <div className="component">
-      <table>
-        <thead>
-          <tr>
-            <th id="header" colSpan={5}>All Trips</th>
-          </tr>
-          <tr>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Resort</th>
-            <th>Hotel</th>
-            <th>
-              <span className="sr-only">Edit</span>
-            </th>
-            <th>
-              <span className="sr-only">Delete</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.getAllTrips.map((trip: any) => (
-            <tr key={trip.start_date}>
-              <td>{dayjs(trip.start_date).format('MM/DD/YYYY')}</td>
-              <td>{dayjs(trip.end_date).format('MM/DD/YYYY')}</td>
-              <td>{trip.resort}</td>
-              <td>{trip.hotel}</td>
-              <td>
-                <button type="button">Edit</button>
-              </td>
-              <td>
-                <button type="button">Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <Table sx={{ margin: 100 }} verticalSpacing="sm">
+      <thead>
+        <tr>
+          <th style={{ width: 40 }}>
+            <Checkbox
+              onChange={toggleAll}
+              // checked={selection.length === data.length}
+              // indeterminate={selection.length > 0 && selection.length !== data.length}
+              transitionDuration={0}
+            />
+          </th>
+          <th>Dates</th>
+          <th>Resort</th>
+          <th>Hotel</th>
+        </tr>
+      </thead>
+      <tbody>{rows}</tbody>
+    </Table>
   );
 }

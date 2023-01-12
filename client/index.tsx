@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
+import { MantineProvider } from '@mantine/core';
 import App from './App';
 import './stylesheets/index.scss';
 
@@ -11,6 +12,8 @@ const client = new ApolloClient({
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <ApolloProvider client={client}>
-    <App />
+    <MantineProvider withGlobalStyles withNormalizeCSS>
+      <App />
+    </MantineProvider>
   </ApolloProvider>,
 );
