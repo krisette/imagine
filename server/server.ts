@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 import cors from 'cors';
 import dotenv from 'dotenv';
-// const path = require('path');
+import path from 'path';
+import passport from 'passport';
 import express, { Request, Response } from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import typeDefs from './typeDefs';
@@ -13,6 +14,11 @@ const mongoose = require('mongoose');
 
 const app = express();
 app.use(cors());
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+const session = require('express-session');
+const MongoStore = require('connect-mongo');
 
 const startApolloServer = async () => {
   const server = new ApolloServer({
@@ -42,11 +48,24 @@ const startApolloServer = async () => {
 
 startApolloServer();
 
-app.use('/auth', authRouter);
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+  store: new MongoStore({
+    mongoUrl: process.env.MONGO_URI,
+  }),
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
+  },
+}));
+app.use(passport.authenticate('session'));
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Express + TypeScript Server');
-});
+app.use('/', authRouter);
+
+// app.get('/', (req: Request, res: Response) => {
+//   res.send('Express + TypeScript Server');
+// });
 
 // connect to db
 

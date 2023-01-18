@@ -42,8 +42,8 @@ export default function Login() {
       </Text>
 
       <Group grow mb="md" mt="md">
-        {/* <GoogleButton radius="xl">Google</GoogleButton>
-        <TwitterButton radius="xl">Twitter</TwitterButton> */}
+        <a href="http://localhost:3000/login/federated/google"><button type="button">Google</button></a>
+        {/* <TwitterButton radius="xl">Twitter</TwitterButton> */}
       </Group>
 
       <Divider label="Or continue with email" labelPosition="center" my="lg" />

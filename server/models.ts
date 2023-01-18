@@ -29,10 +29,19 @@ const parkSchema = new Schema({
 
 export const Park = mongoose.model('park', parkSchema);
 
+// oauth schema
+const thirdPartyProviderSchema = new Schema({
+  provider_name: { type: String, required: true },
+  provider_id: { type: String, required: true },
+  provider_data: {},
+});
+
 // users schema
 const userSchema = new Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  email: { type: String, unique: true },
+  oauth: [thirdPartyProviderSchema],
   trips: [{
     type: Schema.Types.ObjectId,
     ref: 'trip',
