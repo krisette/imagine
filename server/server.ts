@@ -15,8 +15,6 @@ const mongoose = require('mongoose');
 const app = express();
 app.use(cors());
 
-app.use(express.static(path.join(__dirname, 'build')));
-
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 
@@ -63,9 +61,9 @@ app.use(passport.authenticate('session'));
 
 app.use('/', authRouter);
 
-// app.get('/', (req: Request, res: Response) => {
-//   res.send('Express + TypeScript Server');
-// });
+app.get('/', (req: Request, res: Response) => {
+  res.send('hello world');
+});
 
 // connect to db
 
