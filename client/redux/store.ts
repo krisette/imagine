@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from './slices/counterSlice';
+import tripReducer from './slices/tripSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    trip: tripReducer,
   },
 });
 
